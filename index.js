@@ -4,11 +4,11 @@ let diacriticsMap = {};
 let alphabetMap = {};
 
 for (let i = 0; i < characters.length; i++) {
-   const chars = characters[i].alts;
+   const alts = characters[i].alts;
    const base = characters[i].base;
-   alphabetMap[base] = chars;
-   for (let j = 0; j < chars.length; j++) {
-      diacriticsMap[chars[j]] = base;
+   alphabetMap[base] = alts;
+   for (let j = 0; j < alts.length; j++) {
+      diacriticsMap[alts[j]] = base;
    }
 }
 
