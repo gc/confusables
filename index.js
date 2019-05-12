@@ -1,26 +1,22 @@
 const { characters } = require('./characters.js');
 
-let diacriticsMap = {};
-let alphabetMap = {};
+const diacriticsMap = {};
+const alphabetMap = {};
 
 for (let i = 0; i < characters.length; i++) {
-   const alts = characters[i].alts;
-   const base = characters[i].base;
+   const { alts, base } = characters[i];
    alphabetMap[base] = alts;
-   for (let j = 0; j < alts.length; j++) {
-      diacriticsMap[alts[j]] = base;
+   for (const char of alts) {
+      diacriticsMap[char] = base;
    }
 }
 
 function clean(str) {
    let newStr = '';
-   for (let i = 0; i < str.length; i++) {
-      const char = str.charAt(i);
-      newStr += diacriticsMap[char] || char;
+   for (const char of str) {
+      newStr += diacriticsMap[char.toLowerCase()] || diacriticsMap[char.toUpperCase()] || char;
    }
    return newStr;
-
-   return str.replace(/[^\u0000-\u007e]/g, c => diacriticsMap[c] || c);
 }
 
 function obfuscate(str) {
