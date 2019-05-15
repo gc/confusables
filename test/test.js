@@ -17,7 +17,20 @@ assert.strictEqual(remove('Ƈ০ⓃբỦⓢἊƄʟἕᔕ'), 'CoNfUsAbLeS');
 assert.strictEqual(remove('ƇȮṆⒻꓵƽΛБᒹἜᔢ'), 'CONFUSABLES');
 assert.strictEqual(remove('Àᴮ©¹²³ᕽȲⓏᾌ⧂⦶Ἀ'), 'ABC123XYZAOOA');
 assert.strictEqual(remove('գẮȥฝѕꊼếὠḍČ∱ŖνẞցГўⒽդʆủᛖɫΚἰסṕ'), 'qAzWsXewdCfRvBgTyHnJuMlKiOp');
-assert.strictEqual(remove(obfuscate('ABCDEFGHIJKLMNOPQRSTUVWXYZé')), 'ABCDEFGHIJKLMNOPQRSTUVWXYZe');
+assert.strictEqual(remove('Ἢἕļľᦞ ш٥ṟｌᑰ! Hello World!'), 'Hello World! Hello World!');
+
+for (let i = 0; i < 100; i++) {
+	const src = 'qazwsxedcrfvtgbyhnujmikolpQAZWSXEDCRFVTGBYHNUJMIKOLP123456789';
+	const str = obfuscate(src);
+	try {
+		assert.strictEqual(remove(str), src);
+	} catch (err) {
+		console.error('----------------');
+		console.error('----------------');
+		console.error(`${src.split('').join(',')}`);
+		console.error(`${str.split('').join(',')}`);
+	}
+}
 
 function testForDuplicates() {
 	const items = [];

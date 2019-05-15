@@ -23,10 +23,11 @@ npm install confusables
 ```js
 const { remove, obfuscate } = require('confusables');
 
+const weirdString = 'Ἢἕļľᦞ ш٥ṟｌᑰ! Hello World!';
 
-console.log(obfuscate('Hello World')); // ???
-console.log(remove('Ἢἕļľᦞ ш٥ṟｌᑰ')) // Hello World
+const normalString = remove(weirdString);
 
+console.log(normalString); // Hello World! Hello World!
 ```
 
 ## What are confusables?
