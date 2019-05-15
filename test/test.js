@@ -1,12 +1,23 @@
 const { remove, obfuscate, characters, stripCombiningMarks } = require('../dist');
-
-console.log(remove('Iñtërnâtiônàlizætiøn'));
-console.log(obfuscate('test123123'));
+const assert = require('assert');
 
 const { readFileSync, writeFileSync } = require('fs');
 const punctuationRegEx = /[~`!@#$%^&*(){}\[\];:"'<,.>?\/\\|_+=-]/g;
 const newCharacters = readFileSync('./test/newchars', 'utf8');
 const blacklistedCharacters = readFileSync('./test/blacklistedchars', 'utf8');
+
+assert.strictEqual(remove('Iлｔèｒｎåｔïｏｎɑｌíƶａｔïǫԉ'), 'Internationalization');
+assert.strictEqual(remove('ᴎᴑᴅᴇȷʂ'), 'NoDEJs');
+assert.strictEqual(remove('hambúrguer'), 'hamburguer');
+assert.strictEqual(remove('hŒllœ'), 'hOElloe');
+assert.strictEqual(remove('ABCDEFGHIJKLMNOPQRSTUVWXYZé'), 'ABCDEFGHIJKLMNOPQRSTUVWXYZe');
+assert.strictEqual(remove('Ἢἕļľᦞ ш٥ṟｌᑰ'), 'Hello World');
+assert.strictEqual(remove('᧚ỏņꊰṵśảƅĺɘʂ'), 'confusables');
+assert.strictEqual(remove('Ƈ০ⓃբỦⓢἊƄʟἕᔕ'), 'CoNfUsAbLeS');
+assert.strictEqual(remove('ƇȮṆⒻꓵƽΛБᒹἜᔢ'), 'CONFUSABLES');
+assert.strictEqual(remove('Àᴮ©¹²³ᕽȲⓏᾌ⧂⦶Ἀ'), 'ABC123XYZAOOA');
+assert.strictEqual(remove('գẮȥฝѕꊼếὠḍČ∱ŖνẞցГўⒽդʆủᛖɫΚἰסṕ'), 'qAzWsXewdCfRvBgTyHnJuMlKiOp');
+assert.strictEqual(remove(obfuscate('ABCDEFGHIJKLMNOPQRSTUVWXYZé')), 'ABCDEFGHIJKLMNOPQRSTUVWXYZe');
 
 function testForDuplicates() {
 	const items = [];
@@ -56,7 +67,6 @@ function strip(str) {
 		.replace(/[0-9a-zA-Z]/g, '')
 		.replace(punctuationRegEx, '');
 }
-
 
 checkNewChars();
 testForDuplicates();

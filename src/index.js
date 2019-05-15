@@ -15,8 +15,8 @@ for (let i = 0; i < characters.length; i++) {
 
 export function remove(str) {
 	let newStr = '';
-	for (const char of str) {
-		newStr += diacriticsMap[char.toLowerCase()] || diacriticsMap[char.toUpperCase()] || char;
+	for (const char of stripCombiningMarks(str)) {
+		newStr += diacriticsMap[char] || char;
 	}
 	return newStr;
 }
