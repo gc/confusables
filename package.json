@@ -1,6 +1,6 @@
 {
   "name": "confusables",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "A library to interact with Unicode Confusables in strings.",
   "repository": {
     "type": "git",
@@ -16,7 +16,8 @@
   "module": "dist/index.mjs",
   "scripts": {
     "build": "microbundle",
-    "dev": "microbundle watch"
+	"dev": "microbundle watch",
+	"prepublishOnly": "yarn build"
   },
   "devDependencies": {
     "eslint": "^5.16.0",
