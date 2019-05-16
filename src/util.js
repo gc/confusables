@@ -4,8 +4,7 @@ export const regexLineBreakCombiningMarks = /[\0-\x08\x0E-\x1F\x7F-\x84\x86-\x9F
 /* eslint-enable max-len */
 
 // Copyright (c) Copyright Mathias Bynens <https://mathiasbynens.be/>. MIT license.
-export function stripCombiningMarks(string) {
-	return string
+export const stripCombiningMarks = string =>
+	string
 		.replace(regexLineBreakCombiningMarks, '')
 		.replace(regexSymbolWithCombiningMarks, '$1');
-}

@@ -5,32 +5,21 @@ export { characters, stripCombiningMarks };
 export const diacriticsMap = {};
 export const alphabetMap = {};
 
-for (let i = 0; i < characters.length; i++) {
-	const { alts, base } = characters[i];
+for (const { base, alts } of characters) {
 	alphabetMap[base] = alts;
 	for (const char of alts) {
 		diacriticsMap[char] = base;
 	}
 }
 
-export function remove(str) {
-	let newStr = '';
-	for (const char of stripCombiningMarks(str)) {
-		newStr += diacriticsMap[char] || char;
-	}
-	return newStr;
-}
+export const remove = str =>
+	[...stripCombiningMarks(str)].reduce((newStr, char) =>
+		newStr + diacriticsMap[char] || char, '');
 
-export function obfuscate(str) {
-	let newStr = '';
-	for (let i = 0; i < str.length; i++) {
-		const char = str.charAt(i);
+export const obfuscate = str =>
+	[...str].reduce((newStr, char) => {
 		const charMap = alphabetMap[char];
-		if (!charMap) {
-			newStr += char;
-			continue;
-		}
-		newStr += charMap[Math.floor(Math.random() * charMap.length)];
-	}
-	return newStr;
-}
+		return newStr + (charMap ?
+			charMap[Math.floor(Math.random() * charMap.length)] :
+			char);
+	}, '');
