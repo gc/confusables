@@ -16,7 +16,8 @@
   "module": "dist/index.mjs",
   "scripts": {
     "build": "microbundle",
-    "dev": "microbundle watch"
+	"dev": "microbundle watch",
+	"prepublishOnly": "yarn build"
   },
   "devDependencies": {
     "eslint": "^5.16.0",
