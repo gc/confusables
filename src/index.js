@@ -12,14 +12,21 @@ for (const { base, alts } of characters) {
 	}
 }
 
-export const remove = str =>
-	[...stripCombiningMarks(str)].reduce((newStr, char) =>
-		newStr + diacriticsMap[char] || char, '');
+export function remove(str) {
+	let newStr = '';
+	for (const char of stripCombiningMarks(str)) {
+		newStr += diacriticsMap[char] || char;
+	}
+	return newStr;
+}
 
-export const obfuscate = str =>
-	[...str].reduce((newStr, char) => {
+export function obfuscate(str) {
+	let newStr = '';
+	for (const char of str) {
 		const charMap = alphabetMap[char];
-		return newStr + (charMap ?
+		newStr += charMap ?
 			charMap[Math.floor(Math.random() * charMap.length)] :
-			char);
-	}, '');
+			char;
+	}
+	return newStr;
+}
