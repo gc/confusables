@@ -111,7 +111,6 @@ export const characters = [
 		base: 'J',
 		alts: 'ⒿＪЈʝᒍנﾌĴʆวلյʖᴊᴶﻝጋɈⱼՂๅႱįᎫȷ丿ℐℑᒘᒙᒚᒛᒴᒵᒎᒏ'
 	},
-
 	{
 		base: 'j',
 		alts: 'ⓙｊϳʲ⒥ɉĵǰјᶨ'
@@ -124,7 +123,6 @@ export const characters = [
 		base: 'k',
 		alts: 'ⓚｋḱǩḳķḵƙⱪᶄ'
 	},
-
 	{
 		base: 'L',
 		alts: 'ⓁւＬĿᒪ乚ՆʟꓶιԼᴸˡĹረḶₗΓլĻᄂⅬℒⱢᥧᥨᒻᒶᒷᶫﺎᒺᒹᒸᒫ'
