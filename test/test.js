@@ -3,8 +3,8 @@ const assert = require('assert');
 
 const { readFileSync, writeFileSync } = require('fs');
 const punctuationRegEx = /[~`!@#$%^&*(){}\[\];:"'<,.>?\/\\|_+=-]/g;
-const newCharacters = readFileSync('./test/newchars', 'utf8');
-const blacklistedCharacters = readFileSync('./test/blacklistedchars', 'utf8');
+const newCharacters = readFileSync('./test/newchars', { encoding: 'utf-8' });
+const blacklistedCharacters = readFileSync('./test/blacklistedchars', { encoding: 'utf-8' });
 
 assert.strictEqual(remove('Iлｔèｒｎåｔïｏｎɑｌíƶａｔïǫԉ'), 'Internationalization');
 assert.strictEqual(remove('ᴎᴑᴅᴇȷʂ'), 'NoDEJs');
@@ -14,30 +14,20 @@ assert.strictEqual(remove('ABCDEFGHIJKLMNOPQRSTUVWXYZé'), 'ABCDEFGHIJKLMNOPQRST
 assert.strictEqual(remove('Ἢἕļľᦞ ш٥ṟｌᑰ'), 'Hello World');
 assert.strictEqual(remove('᧚ỏņꊰṵśảƅĺɘʂ'), 'confusables');
 assert.strictEqual(remove('Ƈ০ⓃբỦⓢἊƄʟἕᔕ'), 'CoNfUsAbLeS');
-assert.strictEqual(remove('ƇȮṆⒻꓵƽΛБᒹἜᔢ'), 'CONFUSABLES');
+assert.strictEqual(remove('ƇȮṆⒻꓵSΛБᒹἜᔢ'), 'CONFUSABLES');
 assert.strictEqual(remove('Àᴮ©¹²³ᕽȲⓏᾌ⧂⦶Ἀ'), 'ABC123XYZAOOA');
-assert.strictEqual(remove('գẮȥฝѕꊼếὠḍČ∱ŖνẞցГўⒽդʆủᛖɫΚἰסṕ'), 'qAzWsXewdCfRvBgTyHnJuMlKiOp');
+assert.strictEqual(remove('գẮȥฝѕꊼếὠḍČ∱ŖνẞցTўⒽդʆủᛖɫΚἰסṕ'), 'qAzWsXewdCfRvBgTyHnJuMlKiOp');
 assert.strictEqual(remove('Ἢἕļľᦞ ш٥ṟｌᑰ! Hello World!'), 'Hello World! Hello World!');
+assert.strictEqual(remove('ᾌḆՇḎᎬғƓҥĮʝᵏረӎⁿ៰ᑬℚƦȘፕǕ٧ẂᵡΥⓏᾄᑲćđɇ⒡ḡȟ׀ϳⓚוɱпṏpｑⓡᶊṱῠงὤӽ⒴ⓩ¹ᒿ³ᶣ5Ϭ7890'), 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890');
 
-for (let i = 0; i < 100; i++) {
-	const src = 'qazwsxedcrfvtgbyhnujmikolpQAZWSXEDCRFVTGBYHNUJMIKOLP123456789';
-	const str = obfuscate(src);
-	try {
-		assert.strictEqual(remove(str), src);
-	} catch (err) {
-		console.error('----------------');
-		console.error('----------------');
-		console.error(`${src.split('').join(',')}`);
-		console.error(`${str.split('').join(',')}`);
-	}
-}
 
 function testForDuplicates() {
 	const items = [];
 	for (let i = 0; i < characters.length; i++) {
 		for (const char of characters[i].alts) {
 			if (items.includes(char)) {
-				console.error(`${char} is duplicated.`);
+				console.log(characters[i].base);
+				return console.error(`${char} is duplicated.`);
 			}
 			items.push(char);
 		}
@@ -51,20 +41,19 @@ function print() {
 	}
 }
 
+
 function checkNewChars() {
 	const currentChars = characters.map(arr => arr.alts).join('');
 	const newChars = strip(newCharacters);
-	let newStr = '';
-	for (let i = 0; i < newChars.length; i++) {
-		const char = newChars[i];
-
+	const newC = [];
+	for (const char of newChars) {
 		if (currentChars.includes(char) || blacklistedCharacters.includes(char)) {
 			continue;
 		}
-		newStr += char;
+		if (!newC.includes(char)) newC.push(char);
 	}
 
-	writeFileSync('./test/newchars', chunk(newStr.split(''), 20).map(arr => arr.join(',')).join('\n'));
+	writeFileSync('./test/newchars', chunk(newC, 30).join('\n'), { encoding: 'utf-8' });
 }
 
 function chunk(entries, chunkSize) {
@@ -83,3 +72,4 @@ function strip(str) {
 
 checkNewChars();
 testForDuplicates();
+print();
