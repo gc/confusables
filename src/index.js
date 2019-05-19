@@ -2,20 +2,20 @@ import { characters } from './characters';
 import { stripCombiningMarks } from './util';
 
 export { characters, stripCombiningMarks };
-export const diacriticsMap = {};
+export const confusablesMap = {};
 export const alphabetMap = {};
 
 for (const { base, alts } of characters) {
 	alphabetMap[base] = alts;
 	for (const char of alts) {
-		diacriticsMap[char] = base;
+		confusablesMap[char] = base;
 	}
 }
 
 export function remove(str) {
 	let newStr = '';
 	for (const char of stripCombiningMarks(str)) {
-		newStr += diacriticsMap[char] || char;
+		newStr += confusablesMap[char] || char;
 	}
 	return newStr;
 }
