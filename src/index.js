@@ -12,6 +12,11 @@ for (const { base, alts } of characters) {
 	}
 }
 
+/**
+ * Removes confusable unicode characters from a string.
+ * @param {string} str The text to remove confusables from.
+ * @returns {string}
+ */
 export function remove(str) {
 	let newStr = '';
 	for (const char of stripCombiningMarks(str)) {
@@ -20,6 +25,11 @@ export function remove(str) {
 	return newStr;
 }
 
+/**
+ * Randomly mixes up a string with random confusable characters.
+ * @param {string} str The text to obfuscate.
+ * @returns {string}
+ */
 export function obfuscate(str) {
 	let newStr = '';
 	for (const char of str) {
