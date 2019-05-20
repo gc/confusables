@@ -1,6 +1,4 @@
 declare module 'confusables' {
-  interface {
-    remove(stringToClean: string): string;
-    obfuscate(stringToRandomize: string): string;
-  }
+  export function remove(stringToClean: string): string;
+  export function obfuscate(stringToRandomize: string): string;
 }
