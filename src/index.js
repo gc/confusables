@@ -5,11 +5,19 @@ export { characters, stripCombiningMarks };
 export const confusablesMap = {};
 export const alphabetMap = {};
 
+const removeCache = {};
+
 for (const { base, alts } of characters) {
 	alphabetMap[base] = alts;
 	for (const char of alts) {
 		confusablesMap[char] = base;
 	}
+}
+
+const removeLNPRegex = /[~`!@#%^&*(){}\[\];:"'<,.>?\/\\|_+=-]|[a-zA-Z0-9\s]/g;
+
+function removeLNP(str) {
+	return str.replace(removeLNPRegex, '');
 }
 
 /**
@@ -18,10 +26,13 @@ for (const { base, alts } of characters) {
  * @returns {string}
  */
 export function remove(str) {
+	if (removeLNP(str).length === 0) return str;
+	if (removeCache[str]) return removeCache[str];
 	let newStr = '';
 	for (const char of stripCombiningMarks(str)) {
 		newStr += confusablesMap[char] || char;
 	}
+	removeCache[str] = newStr;
 	return newStr;
 }
 
