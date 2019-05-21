@@ -72,4 +72,3 @@ function strip(str) {
 
 checkNewChars();
 testForDuplicates();
-print();
