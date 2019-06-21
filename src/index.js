@@ -21,7 +21,7 @@ export function remove(str) {
 	if (removeLNP(str).length === 0) return str;
 	if (removeCache[str]) return removeCache[str];
 	let newStr = '';
-	for (const char of getSymbols(stripCombiningMarks(str)).filter(Boolean)) {
+	for (const char of getSymbols(stripCombiningMarks(str))) {
 		newStr += confusablesMap[char] || char;
 	}
 	removeCache[str] = newStr;
