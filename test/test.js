@@ -21,6 +21,7 @@ assert.strictEqual(remove('Ἢἕļľᦞ ш٥ṟｌᑰ! Hello World!'), 'Hello W
 assert.strictEqual(remove('ᾌḆՇḎᎬғƓҥĮʝᵏረӎⁿ៰ᑬℚƦȘፕǕ٧ẂᵡΥⓏᾄᑲćđɇ⒡ḡȟ׀ϳⓚוɱпṏpｑⓡᶊṱῠงὤӽ⒴ⓩ¹ᒿ³ᶣ5Ϭ7890'), 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890');
 
 
+
 function testForDuplicates() {
 	const items = [];
 	for (let i = 0; i < characters.length; i++) {
@@ -53,7 +54,7 @@ function checkNewChars() {
 		if (!newC.includes(char)) newC.push(char);
 	}
 
-	writeFileSync('./test/newchars', chunk(newC, 30).join('\n'), { encoding: 'utf-8' });
+	writeFileSync('./test/newchars', chunk(newC, 30).map(a => a.join('')).join('\n'), { encoding: 'utf-8' });
 }
 
 function chunk(entries, chunkSize) {
