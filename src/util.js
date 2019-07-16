@@ -11,10 +11,10 @@ export const removeLNPRegex = /[~`!@#%^&*(){}\[\];:"'<,.>?\/\\|_+=-]|[a-zA-Z0-9\
  * @returns {string}
  */
 export const stripCombiningMarks = str =>
+	// prettier-ignore
 	str
 		.replace(regexLineBreakCombiningMarks, '')
 		.replace(regexSymbolWithCombiningMarks, '$1');
-
 
 /**
  * Removes all punctuation and alphanumeric characters from a string.
@@ -35,11 +35,11 @@ export function getSymbols(str) {
 	let index = 0;
 	const { length } = str;
 	const output = [];
-	for (; index < length - 1; ++index) {
-		let charCode = str.charCodeAt(index);
-		if (charCode >= 0xD800 && charCode <= 0xDBFF) {
+	for (; index < length; ++index) {
+		var charCode = str.charCodeAt(index);
+		if (charCode >= 0xd800 && charCode <= 0xdbff) {
 			charCode = str.charCodeAt(index + 1);
-			if (charCode >= 0xDC00 && charCode <= 0xDFFF) {
+			if (charCode >= 0xdc00 && charCode <= 0xdfff) {
 				output.push(str.slice(index, index + 2));
 				++index;
 				continue;
@@ -47,6 +47,5 @@ export function getSymbols(str) {
 		}
 		output.push(str.charAt(index));
 	}
-	output.push(str.charAt(index));
 	return output;
 }
