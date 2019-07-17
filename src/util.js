@@ -36,7 +36,7 @@ export function getSymbols(str) {
 	const { length } = str;
 	const output = [];
 	for (; index < length; ++index) {
-		var charCode = str.charCodeAt(index);
+		let charCode = str.charCodeAt(index);
 		if (charCode >= 0xd800 && charCode <= 0xdbff) {
 			charCode = str.charCodeAt(index + 1);
 			if (charCode >= 0xdc00 && charCode <= 0xdfff) {

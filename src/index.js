@@ -37,12 +37,9 @@ export function obfuscate(str) {
 	let newStr = '';
 	for (const char of str) {
 		const charMap = alphabetMap[char];
-		newStr += charMap ?
-			charMap[Math.floor(Math.random() * charMap.length)] :
-			char;
+		newStr += charMap ? charMap[Math.floor(Math.random() * charMap.length)] : char;
 	}
 	return newStr;
 }
-
 
 export { characters, stripCombiningMarks, getSymbols, removeLNP, confusablesMap, alphabetMap };
