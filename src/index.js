@@ -1,5 +1,5 @@
 import { characters } from './characters';
-import { stripCombiningMarks, getSymbols, removeLNP } from './util';
+import { clean, getSymbols, removeLNP } from './util';
 
 const confusablesMap = {};
 const alphabetMap = {};
@@ -21,7 +21,7 @@ export function remove(str) {
 	if (removeLNP(str).length === 0) return str;
 	if (removeCache[str]) return removeCache[str];
 	let newStr = '';
-	for (const char of getSymbols(stripCombiningMarks(str))) {
+	for (const char of getSymbols(clean(str))) {
 		newStr += confusablesMap[char] || char;
 	}
 	removeCache[str] = newStr;
@@ -42,4 +42,4 @@ export function obfuscate(str) {
 	return newStr;
 }
 
-export { characters, stripCombiningMarks, getSymbols, removeLNP, confusablesMap, alphabetMap };
+export { characters, clean, getSymbols, removeLNP, confusablesMap, alphabetMap };
