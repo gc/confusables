@@ -6,7 +6,7 @@
 
 # Confusables
 
-This library allows you to easily remove confusables from a string.
+This library allows you to easily remove confusables from a string, into normal english characters.
 
 Try it out: https://confusables.netlify.com/
 
@@ -20,13 +20,12 @@ npm install confusables
 
 ## Usage
 
-```js
-const { remove } = require('confusables');
+`const { remove } = require('confusables');`
+`import { remove } = from 'confusables';`
 
+```js
 remove('Ἢἕļľᦞ ш٥ṟｌᑰ! Hello World!'); // => Hello World! Hello World!
 remove('Iлｔèｒｎåｔïｏｎɑｌíƶａｔïǫԉ'); // => Internationalization
-
-console.log(normalString);
 ```
 
 ## What are confusables?
