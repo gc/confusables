@@ -20,8 +20,11 @@ npm install confusables
 
 ## Usage
 
-`const { remove } = require('confusables');`
-`import { remove } = from 'confusables';`
+```
+const { remove } = require('confusables');
+
+import { remove } = from 'confusables';
+```
 
 ```js
 remove('Ἢἕļľᦞ ш٥ṟｌᑰ! Hello World!'); // => Hello World! Hello World!
