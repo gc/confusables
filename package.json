@@ -1,9 +1,8 @@
 {
 	"name": "confusables",
-	"version": "0.3.3",
+	"version": "1.0.0",
 	"license": "MIT",
 	"description": "A library to interact with Unicode Confusables in strings.",
-	"types": "typings/index.d.ts",
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/gc/confusables.git"
@@ -12,18 +11,53 @@
 		"url": "https://github.com/gc/confusables/issues"
 	},
 	"homepage": "https://github.com/gc/confusables",
-	"private": false,
-	"source": "src/index.js",
 	"main": "dist/index.js",
-	"module": "dist/index.mjs",
-	"umd:main": "dist/index.umd.js",
+	"module": "dist/index.es.js",
+	"unpkg": "dist/index.umd.js",
+	"typings": "dist/index.d.ts",
 	"scripts": {
-		"build": "microbundle --no-sourcemap",
-		"dev": "microbundle watch --no-sourcemap",
-		"prepublishOnly": "yarn build"
+		"lint": "eslint src test scripts --ext ts --fix",
+		"test": "jest",
+		"style": "yarn pretty-quick",
+		"build": "rollup -c rollup.config.ts",
+		"watch": "yarn build -w",
+		"prepublishOnly": "yarn build",
+		"scripts:runner": "ts-node -P ./tsconfig.eslint.json",
+		"scripts:checknewchars": "yarn scripts:runner scripts/checkForNewChars"
 	},
 	"devDependencies": {
-		"eslint": "^5.16.0",
-		"microbundle": "^0.11.0"
+		"@favware/eslint-config": "3.1.6",
+		"@favware/ts-config": "^1.1.1",
+		"@rollup/plugin-commonjs": "^11.0.1",
+		"@rollup/plugin-node-resolve": "^7.0.0",
+		"@types/jest": "^24.0.25",
+		"@types/node": "^13.1.6",
+		"@types/rollup-plugin-progress": "^1.1.0",
+		"@typescript-eslint/eslint-plugin": "^2.15.0",
+		"@typescript-eslint/parser": "^2.15.0",
+		"eslint": "^6.8.0",
+		"husky": "^4.0.6",
+		"jest": "^24.9.0",
+		"prettier": "^1.19.1",
+		"pretty-quick": "^2.0.1",
+		"rollup": "^1.29.0",
+		"rollup-plugin-progress": "^1.1.1",
+		"rollup-plugin-terser": "^5.1.3",
+		"rollup-plugin-typescript2": "^0.25.3",
+		"ts-jest": "^24.3.0",
+		"ts-node": "^8.5.4",
+		"typescript": "^3.7.4"
+	},
+	"files": [
+		"dist"
+	],
+	"engines": {
+		"node": ">=10",
+		"npm": ">=6"
+	},
+	"husky": {
+		"hooks": {
+			"pre-commit": "pretty-quick --staged"
+		}
 	}
 }

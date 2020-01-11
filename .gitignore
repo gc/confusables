@@ -1,3 +1,43 @@
+# Misc
+.DS_Store
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# NodeJS
 node_modules
 package-lock.json
+
+# Build artifacts
 dist
+*.zip
+*.tar.xz
+*.7z
+*.rar
+*.tsbuildinfo
+
+# In case default tsc instead of rollup is ran accidentally
+src/**/*.js
+src/**/*.js.map
+src/**/*.d.ts
+src/**/*.d.ts.map
+scripts/**/*.js
+scripts/**/*.js.map
+scripts/**/*.d.ts
+scripts/**/*.d.ts.map
+test/**/*.js
+test/**/*.js.map
+test/**/*.d.ts
+test/**/*.d.ts.map
+
+# Logs
+logs
+*.log*
+coverage/
+
+# IDE Settings
+.idea/
+.vs/
+*.iml

@@ -20,15 +20,33 @@ npm install confusables
 
 ## Usage
 
-```
+### Removing confusables
+
+```ts
 const { remove } = require('confusables');
+import remove from 'confusables'; // with ES modules
 
-import { remove } = from 'confusables';
-```
-
-```js
 remove('Ἢἕļľᦞ ш٥ṟｌᑰ! Hello World!'); // => Hello World! Hello World!
 remove('Iлｔèｒｎåｔïｏｎɑｌíƶａｔïǫԉ'); // => Internationalization
+```
+
+### Injecting random confusables
+
+```ts
+const { obfuscate } = require('confusables');
+import { obfuscate } from 'confusables'; // with ES modules
+
+obfuscate('Hello World!'); // => Ḣé𝑙ŀ𝟶 Ꮤᴑ𝖗łᏧ
+obfuscate('Internationalization'); // => ᶦṅᵗᧉ𝘳𝓃ȧťί𝙾ቢค𝞲ἱƶ𝜶ナἰøŉ
+```
+
+### List of supported confusable characters
+
+```ts
+const { characters } = require('confusables');
+import { characters } from 'confusables'; // with ES modules
+
+console.log(characters);
 ```
 
 ## What are confusables?

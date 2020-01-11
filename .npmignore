@@ -1,8 +1,0 @@
-# .npmignore
-node_modules/
-test/
-src/
-.eslintrc.json
-package-lock.json
-README.md
-yarn.lock
