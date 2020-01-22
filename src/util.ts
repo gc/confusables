@@ -7,7 +7,7 @@ export const regexLineBreakCombiningMarks = /[\0-\x08\x0E-\x1F\x7F-\x84\x86-\x9F
 /* eslint-enable max-len, no-misleading-character-class, no-control-regex */
 
 /** Skippable characters that are not confusables */
-export const checkLNPRegex = /^(?:[~`!@#%^&*(){}\[\];:"'<,.>?\/\\|_+=-]|[a-zA-Z0-9\s])+$/;
+export const checkLNPRegex = /^(?:[~`!@#%^&*(){}[\];:"'<,.>?/\\|_+=-]|[a-zA-Z0-9\s])+$/;
 
 export function checkLNP(str: string) {
 	return checkLNPRegex.test(str);
