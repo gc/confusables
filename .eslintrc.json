@@ -1,15 +1,3 @@
 {
-	"extends": ["@favware"],
-	"rules": {
-		// Disabling some stylistic rules that get covered by Prettier
-		"array-bracket-spacing": "off",
-		"eol-last": "off",
-		"comma-dangle": "off",
-		"no-useless-escape": "off",
-		"quotes": "off",
-		"no-invalid-this": "off",
-		"object-curly-newline": "off",
-		"no-tabs": "off",
-		"@typescript-eslint/indent": "off"
-	}
+	"extends": ["@favware"]
 }

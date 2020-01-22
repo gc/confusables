@@ -5,7 +5,7 @@ import { characters } from '../src';
 import { regexLineBreakCombiningMarks, regexSymbolWithCombiningMarks } from '../src/util';
 
 const newCharacters = readFileSync(join(__dirname, 'newchars'), { encoding: 'utf-8' });
-const punctuationRegEx = /[~`!@#$%^&*(){}\[\];:"'<,.>?\/\\|_+=-]/g;
+const punctuationRegEx = /[~`!@#$%^&*(){}[\];:"'<,.>?/\\|_+=-]/g;
 const blacklistedCharacters = readFileSync(join(__dirname, 'blacklistedchars'), {
 	encoding: 'utf-8'
 });
