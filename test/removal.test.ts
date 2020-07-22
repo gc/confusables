@@ -17,7 +17,7 @@ test('GIVEN Confusable characters THEN removes confusables', () => {
 	expect(remove('ƇȮṆⒻꓵSΛБᒹἜᔢ')).toStrictEqual('CONFUSABLES');
 	expect(remove('Àᴮ©¹²³ᕽȲⓏᾌ⧂⦶Ἀ')).toStrictEqual('ABC123XYZAOOA');
 	expect(remove('գẮȥฝѕꊼếὠḍČ∱ŖνẞցTўⒽդʆủᛖɫΚἰסṕ')).toStrictEqual('qAzWsXewdCfRvBgTyHnJuMlKiOp');
-	expect(remove('Ἢἕļľᦞ ш٥ṟｌᑰ! Hello World!')).toStrictEqual('Hello World! Hello World!');
+	expect(remove('Ἢἕļľᦞ ш٥ṟｌᑰ! Hello Worⅼd!')).toStrictEqual('Hello World! Hello World!');
 	expect(remove('ᾌḆՇḎᎬғƓҥĮʝᵏረӎⁿ៰ᑬℚƦȘፕǕ٧ẂᵡΥⓏᾄᑲćđɇ⒡ḡȟ׀ϳⓚוɱпṏpｑⓡᶊṱῠงὤӽ⒴ⓩ¹ᒿ³ᶣ5Ϭ7890')).toStrictEqual(
 		'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890'
 	);
