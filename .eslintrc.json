@@ -1,3 +1,6 @@
 {
-	"extends": ["@favware"]
+	"extends": ["@favware"],
+	"parserOptions": {
+		"extraFileExtensions": [".mjs"]
+	}
 }
