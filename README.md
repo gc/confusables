@@ -43,9 +43,3 @@ import { obfuscate } from 'confusables'; // with ES modules
 obfuscate('Hello World!'); // => Ḣé𝑙ŀ𝟶 Ꮤᴑ𝖗łᏧ
 obfuscate('Internationalization'); // => ᶦṅᵗᧉ𝘳𝓃ȧťί𝙾ቢค𝞲ἱƶ𝜶ナἰøŉ
 ```
-
-## What are confusables?
-
-
-
-> [Source](https://unicode.org/cldr/utility/confusables.jsp)
