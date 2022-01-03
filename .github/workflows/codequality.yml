@@ -12,45 +12,41 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - name: Checkout Project
-              uses: actions/checkout@v1
-            - name: Use Node.js 12
-              uses: actions/setup-node@v1
+              uses: actions/checkout@v2
+            - name: Use Node.js 16.8.0
+              uses: actions/setup-node@v2
               with:
-                  node-version: 12
+                  node-version: 16.8.0
+                  cache: yarn
             - name: Restore CI Cache
               uses: actions/cache@v1
               with:
                   path: node_modules
-                  key: ${{ runner.os }}-12-${{ hashFiles('**/yarn.lock') }}
-            - name: Install Deps
-              run: yarn
+                  key: ${{ runner.os }}-14-${{ hashFiles('**/yarn.lock') }}
+            - name: Install Dependencies
+              run: yarn --frozen-lockfile
             - name: Run ESLint
-              uses: icrawl/action-eslint@v1
-              env:
-                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-              with:
-                  job-name: ESLint
+              run: yarn test:lint
 
     Typescript:
         name: Typescript
         runs-on: ubuntu-latest
         steps:
             - name: Checkout Project
-              uses: actions/checkout@v1
-            - name: Use Node.js 12
-              uses: actions/setup-node@v1
+              uses: actions/checkout@v2
+            - name: Use Node.js 16.8.0
+              uses: actions/setup-node@v2
               with:
-                  node-version: 12
+                  node-version: 16.8.0
+                  cache: yarn
             - name: Restore CI Cache
               uses: actions/cache@v1
               with:
                   path: node_modules
-                  key: ${{ runner.os }}-10-${{ hashFiles('**/yarn.lock') }}
-            - name: Install Deps
-              run: yarn
-            - name: Build Source
-              uses: icrawl/action-tsc@v1
-              env:
-                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-              with:
-                  job-name: Typescript
+                  key: ${{ runner.os }}-14-${{ hashFiles('**/yarn.lock') }}
+            - name: Install Dependencies
+              run: yarn --frozen-lockfile
+            - name: Build
+              run: yarn build
+            - name: Test
+              run: yarn test

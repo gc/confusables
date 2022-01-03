@@ -4,5 +4,5 @@
 		"module": "commonjs",
 		"baseUrl": "./"
 	},
-	"include": ["src", "test", "rollup.config.ts", "scripts"]
+	"include": ["src"]
 }

@@ -1,8 +1,12 @@
 {
-	"extends": "@favware/ts-config",
+	"extends": "@oldschoolgg/eslint-config",
 	"compilerOptions": {
-		"declarationMap": true,
-		"importHelpers": false
+		"outDir": "./dist",
+		"rootDir": "./src",
+		"tsBuildInfoFile": "../dist/.tsbuildinfo",
+		"composite": true,
+		"declaration": true,
+		"incremental": true
 	},
-	"include": ["src"]
+	"include": ["./src"]
 }
