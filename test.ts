@@ -3,7 +3,7 @@ import { characters } from './dist';
 import { remove } from './dist';
 
 const samples = [
-    ['ü', 'u'],
+    ['aü', 'u'],
     ['⓵➊⑴¹𝟏𝟙１𝟷𝟣⒈𝟭1➀₁①❶⥠', '11111111111111111'],
     ['⓵➊⑴¹𝟏𝟙１𝟷𝟣⒈𝟭1➀₁①❶⥠', '11111111111111111'],
     ['remove~simple&punctuation*quickly', 'remove~simple&punctuation*quickly'],
