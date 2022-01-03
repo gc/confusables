@@ -16,8 +16,8 @@
 	"unpkg": "dist/index.umd.js",
 	"typings": "dist/index.d.ts",
 	"scripts": {
-		"lint": "eslint src test scripts --ext ts --fix",
-		"test:lint": "eslint src test scripts --ext ts",
+		"lint": "eslint src --ext ts --fix",
+		"test:lint": "eslint src --ext ts",
 		"test": "yarn build && ts-node ./test.ts",
 		"build": "tsc",
 		"prepublishOnly": "yarn build"
